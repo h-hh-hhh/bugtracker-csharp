@@ -21,14 +21,14 @@ namespace Tracker.WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<ICollection<BugDTO>>> Get()
         {
-            return Ok(_bugService.GetAllBugs());
+            return Ok(await _bugService.GetAllBugs());
         }
 
         /// GET api/Bugs/dddddddd-dddd-dddd-dddd-dddddddddddd
         [HttpGet("{id}")]
         public async Task<ActionResult<BugDTO>> Get(Guid id)
         {
-            return Ok(_bugService.GetBug(id));
+            return Ok(await _bugService.GetBug(id));
         }
 
         /// POST api/Bugs
@@ -43,7 +43,7 @@ namespace Tracker.WebAPI.Controllers
         [HttpPut()]
         public async Task<ActionResult<BugDTO>> Put([FromBody] BugCreateDTO dto)
         {
-            return Ok(_bugService.UpdateBug(dto, new Guid("00000000-0000-0000-0001-000000000000"))); // TODO replace hardcoded authorid with actual auth
+            return Ok(await _bugService.UpdateBug(dto, new Guid("00000000-0000-0000-0001-000000000000"))); // TODO replace hardcoded authorid with actual auth
         }
 
         /// DELETE api/<BugsController>/dddddddd-dddd-dddd-dddd-dddddddddddd

@@ -24,6 +24,15 @@ namespace Tracker.BLL.Services.Fakes
             Created = DateTime.Now,
             Updated = DateTime.Now
         };
+        private static ProjectDTO _project = new ProjectDTO
+        {
+            Id = new Guid("00000000-0000-0000-0003-000000000000"),
+            Name = "project 1",
+            Description = "Description for project 1",
+            Author = _user1,
+            Created = DateTime.Now,
+            Updated = DateTime.Now
+        };
         private static TagDTO _tag1 = new TagDTO
         {
             Id = new Guid("00000000-0000-0000-0002-000000000000"),
@@ -44,6 +53,7 @@ namespace Tracker.BLL.Services.Fakes
                 Title = "Test get",
                 Description = "Description",
                 Author = _user1,
+                Project = _project,
                 Status = 0,
                 Created = DateTime.Now,
                 Updated = DateTime.Now,
@@ -64,6 +74,7 @@ namespace Tracker.BLL.Services.Fakes
                 Title = "Test create",
                 Description = "Description",
                 Author = _user1,
+                Project = _project,
                 Status = 0,
                 Created = DateTime.Now,
                 Updated = DateTime.Now,
@@ -84,6 +95,7 @@ namespace Tracker.BLL.Services.Fakes
                 Title = "Test update",
                 Description = "Description",
                 Author = _user1,
+                Project = _project,
                 Status = 0,
                 Created = DateTime.Now,
                 Updated = DateTime.Now,
