@@ -25,7 +25,7 @@ namespace Tracker.DAL
             #region Bug 
             modelBuilder.Entity<Bug>()
                 .Property(e => e.Id)
-                .HasDefaultValue(Guid.NewGuid());
+                .HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<Bug>()
                 .HasKey(e => e.Id)
                 .IsClustered(false);
@@ -34,7 +34,7 @@ namespace Tracker.DAL
             #region Project 
             modelBuilder.Entity<Project>()
                 .Property(e => e.Id)
-                .HasDefaultValue(Guid.NewGuid());
+                .HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<Project>()
                 .HasKey(e => e.Id)
                 .IsClustered(false);
@@ -43,7 +43,7 @@ namespace Tracker.DAL
             #region Tag 
             modelBuilder.Entity<Tag>()
                 .Property(e => e.Id)
-                .HasDefaultValue(Guid.NewGuid());
+                .HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<Tag>()
                 .HasKey(e => e.Id)
                 .IsClustered(false);
@@ -52,7 +52,7 @@ namespace Tracker.DAL
             #region User 
             modelBuilder.Entity<User>()
                 .Property(e => e.Id)
-                .HasDefaultValue(Guid.NewGuid());
+                .HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<User>()
                 .HasKey(e => e.Id)
                 .IsClustered(false);
@@ -61,7 +61,7 @@ namespace Tracker.DAL
             #region Comment 
             modelBuilder.Entity<Comment>()
                 .Property(e => e.Id)
-                .HasDefaultValue(Guid.NewGuid());
+                .HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<Comment>()
                 .HasKey(e => e.Id)
                 .IsClustered(false);
@@ -80,6 +80,38 @@ namespace Tracker.DAL
                 .HasMany(e => e.Tags)
                 .WithMany(e => e.TaggedBugs)
                 .UsingEntity(e => e.ToTable("BugTag"));
+
+            modelBuilder.Entity<Project>()
+                .HasMany(e => e.Members)
+                .WithMany(e => e.Projects)
+                .UsingEntity(e => e.ToTable("ProjectMember"));
+
+            modelBuilder.Entity<Bug>()
+                .HasOne(e => e.Author)
+                .WithMany()
+                .HasForeignKey("AuthorId")
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Bug>()
+                .HasOne(e => e.Project)
+                .WithMany()
+                .HasForeignKey("ProjectId");
+
+            modelBuilder.Entity<Bug>()
+                .HasMany(e => e.Comments)
+                .WithOne()
+                .HasForeignKey("BugId");
+
+            modelBuilder.Entity<Comment>()
+                .HasOne(e => e.Author)
+                .WithMany()
+                .HasForeignKey("AuthorId");
+
+            modelBuilder.Entity<Project>()
+                .HasOne(e => e.Owner)
+                .WithMany()
+                .HasForeignKey("OwnerId")
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

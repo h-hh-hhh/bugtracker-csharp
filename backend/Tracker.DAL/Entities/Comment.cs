@@ -30,11 +30,6 @@ namespace Tracker.DAL.Entities
         }
         public DateTime Updated { get; set; }
 
-        [ForeignKey("Bug")]
-        public Guid BugId { get; set; }
-        public Bug Bug { get; set; }
-        [ForeignKey("Author")]
-        public Guid AuthorId { get; set; }
         public User Author { get; set; }
     }
 }

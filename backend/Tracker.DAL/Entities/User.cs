@@ -35,6 +35,7 @@ namespace Tracker.DAL.Entities
         }
         public DateTime Updated { get; set; }
 
-        public ICollection<Bug> AssignedBugs { get; set; }
+        public ICollection<Project> Projects { get; set; }
+        public ICollection<Bug> AssignedBugs { get; private set; }
     }
 }

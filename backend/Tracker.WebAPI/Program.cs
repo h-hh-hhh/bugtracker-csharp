@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen();
 
 if (builder.Environment.IsDevelopment())
 {
-    builder.Services.AddEntityFrameworkSqlServer()
+    builder.Services
         .AddDbContext<TrackerDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DevelopmentConnection")));
 }

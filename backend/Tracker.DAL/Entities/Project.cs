@@ -31,5 +31,8 @@ namespace Tracker.DAL.Entities
             set => _created = (value == DateTime.MinValue) ? DateTime.Now : value;
         }
         public DateTime Updated { get; set; }
+
+        public User Owner { get; set; }
+        public ICollection<User> Members { get; set; }
     }
 }

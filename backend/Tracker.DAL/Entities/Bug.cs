@@ -43,12 +43,9 @@ namespace Tracker.DAL.Entities
         }
         public DateTime Updated { get; set; }
 
-        [ForeignKey("Author")]
-        public Guid AuthorId { get; set; }
         public User Author { get; set; }
-        [ForeignKey("Project")]
-        public Guid ProjectId { get; set; }
         public Project Project { get; set; }
+        public ICollection<Comment> Comments { get; private set; }
         public ICollection<User> Assignees { get; private set; }
         public ICollection<Tag> Tags { get; private set; }
     }
