@@ -37,13 +37,13 @@ namespace Tracker.BLL.Services.Fakes
         {
             Id = new Guid("00000000-0000-0000-0002-000000000000"),
             Name = "Tag 1",
-            Color = 0x000057b7
+            Color = 0xff0057b7
         };
         private static TagDTO _tag2 = new TagDTO
         {
             Id = new Guid("00000000-0000-0000-0002-000000000001"),
             Name = "Tag 2",
-            Color = 0x00ffd700
+            Color = 0xffffd700
         };
         private static ICollection<BugDTO> _bugs = new List<BugDTO>
         {

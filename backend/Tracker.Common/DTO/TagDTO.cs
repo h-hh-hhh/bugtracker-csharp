@@ -10,6 +10,6 @@ namespace Tracker.Common.DTO
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public int Color { get; set; } // format 0xaarrggbb
+        public uint Color { get; set; } // format 0xaarrggbb
     }
 }
