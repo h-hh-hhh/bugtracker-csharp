@@ -14,10 +14,10 @@ namespace Tracker.DAL.Entities
     {
         [Key]
         public Guid Id { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ClusterId { get; set; }
 
         public string Name { get; set; }
         public uint Color { get; set; }
+
+        public ICollection<Bug> TaggedBugs { get; set; }
     }
 }

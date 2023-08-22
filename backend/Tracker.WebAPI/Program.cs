@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Tracker.BLL.Services.Fakes;
 using Tracker.BLL.Services.Interfaces;
+using Tracker.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,19 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddEntityFrameworkSqlServer()
+        .AddDbContext<TrackerDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DevelopmentConnection")));
+}
+else
+{
+    builder.Services.AddEntityFrameworkSqlServer()
+        .AddDbContext<TrackerDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("ProductionConnection")));
+}
 
 builder.Services.AddSingleton<IBugService, BugServiceFake>();
 

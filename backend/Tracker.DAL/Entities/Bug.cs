@@ -31,8 +31,6 @@ namespace Tracker.DAL.Entities
 
         [Key]
         public Guid Id { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ClusterId { get; set; }
 
         [Required]
         public string Title { get; set; }
@@ -45,13 +43,13 @@ namespace Tracker.DAL.Entities
         }
         public DateTime Updated { get; set; }
 
-        [ForeignKey("Id")]
+        [ForeignKey("Author")]
+        public Guid AuthorId { get; set; }
         public User Author { get; set; }
-        [ForeignKey("Id")]
+        [ForeignKey("Project")]
+        public Guid ProjectId { get; set; }
         public Project Project { get; set; }
-        [ForeignKey("Id")]
         public ICollection<User> Assignees { get; private set; }
-        [ForeignKey("Id")]
         public ICollection<Tag> Tags { get; private set; }
     }
 }

@@ -21,8 +21,6 @@ namespace Tracker.DAL.Entities
 
         [Key]
         public Guid Id { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ClusterId { get; set; }
 
         [Required]
         public string Username { get; set; }
@@ -36,5 +34,7 @@ namespace Tracker.DAL.Entities
             set => _created = (value == DateTime.MinValue) ? DateTime.Now : value;
         }
         public DateTime Updated { get; set; }
+
+        public ICollection<Bug> AssignedBugs { get; set; }
     }
 }

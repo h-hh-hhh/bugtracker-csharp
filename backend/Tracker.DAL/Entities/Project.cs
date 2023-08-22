@@ -21,8 +21,6 @@ namespace Tracker.DAL.Entities
 
         [Key]
         public Guid Id { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ClusterId { get; set; }
 
         [Required]
         public string Name { get; set; }

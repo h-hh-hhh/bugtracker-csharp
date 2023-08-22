@@ -21,8 +21,6 @@ namespace Tracker.DAL.Entities
 
         [Key]
         public Guid Id { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ClusterId { get; set; }
 
         public string Text { get; set; }
         public DateTime Created
@@ -32,9 +30,11 @@ namespace Tracker.DAL.Entities
         }
         public DateTime Updated { get; set; }
 
-        [ForeignKey("Id")]
+        [ForeignKey("Bug")]
+        public Guid BugId { get; set; }
         public Bug Bug { get; set; }
-        [ForeignKey("Id")]
+        [ForeignKey("Author")]
+        public Guid AuthorId { get; set; }
         public User Author { get; set; }
     }
 }

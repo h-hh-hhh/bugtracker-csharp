@@ -10,6 +10,8 @@ namespace Tracker.DAL
 {
     public class TrackerDbContext : DbContext
     {
+        public TrackerDbContext(DbContextOptions options) : base(options) { }
+
         public DbSet<Bug> Bugs { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<User> Users { get; set; }
@@ -20,69 +22,64 @@ namespace Tracker.DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            #region Bug Add Cluster Id
+            #region Bug 
             modelBuilder.Entity<Bug>()
                 .Property(e => e.Id)
                 .HasDefaultValue(Guid.NewGuid());
             modelBuilder.Entity<Bug>()
                 .HasKey(e => e.Id)
                 .IsClustered(false);
-            modelBuilder.Entity<Bug>()
-                .HasKey(e => e.ClusterId)
-                .IsClustered();
             #endregion
 
-            #region Project Add Cluster Id
+            #region Project 
             modelBuilder.Entity<Project>()
                 .Property(e => e.Id)
                 .HasDefaultValue(Guid.NewGuid());
             modelBuilder.Entity<Project>()
                 .HasKey(e => e.Id)
                 .IsClustered(false);
-            modelBuilder.Entity<Project>()
-                .HasKey(e => e.ClusterId)
-                .IsClustered();
             #endregion
 
-            #region Tag Add Cluster Id
+            #region Tag 
             modelBuilder.Entity<Tag>()
                 .Property(e => e.Id)
                 .HasDefaultValue(Guid.NewGuid());
             modelBuilder.Entity<Tag>()
                 .HasKey(e => e.Id)
                 .IsClustered(false);
-            modelBuilder.Entity<Tag>()
-                .HasKey(e => e.ClusterId)
-                .IsClustered();
             #endregion
 
-            #region User Add Cluster Id
+            #region User 
             modelBuilder.Entity<User>()
                 .Property(e => e.Id)
                 .HasDefaultValue(Guid.NewGuid());
             modelBuilder.Entity<User>()
                 .HasKey(e => e.Id)
                 .IsClustered(false);
-            modelBuilder.Entity<User>()
-                .HasKey(e => e.ClusterId)
-                .IsClustered();
             #endregion
 
-            #region Comment Add Cluster Id
+            #region Comment 
             modelBuilder.Entity<Comment>()
                 .Property(e => e.Id)
                 .HasDefaultValue(Guid.NewGuid());
             modelBuilder.Entity<Comment>()
                 .HasKey(e => e.Id)
                 .IsClustered(false);
-            modelBuilder.Entity<Comment>()
-                .HasKey(e => e.ClusterId)
-                .IsClustered();
             #endregion
 
             modelBuilder.Entity<User>()
                 .HasIndex(e => e.Username)
                 .IsUnique();
+
+            modelBuilder.Entity<Bug>()
+                .HasMany(e => e.Assignees)
+                .WithMany(e => e.AssignedBugs)
+                .UsingEntity(e => e.ToTable("BugAssignee"));
+
+            modelBuilder.Entity<Bug>()
+                .HasMany(e => e.Tags)
+                .WithMany(e => e.TaggedBugs)
+                .UsingEntity(e => e.ToTable("BugTag"));
         }
     }
 }
