@@ -20,5 +20,6 @@ namespace Tracker.Common.DTO
         public DateTime Updated { get; set; }
         public ICollection<TagDTO> Tags { get; set; }
         public ICollection<UserDTO> Assignees { get; set; }
+        public ICollection<CommentDTO> Comments { get; set; }
     }
 }

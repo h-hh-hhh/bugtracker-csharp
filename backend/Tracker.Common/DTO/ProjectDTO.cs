@@ -14,6 +14,7 @@ namespace Tracker.Common.DTO
         public string Name { get; set; }
         public string Description { get; set; }
         public UserDTO Author { get; set; }
+        public ICollection<UserDTO> Members { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
     }

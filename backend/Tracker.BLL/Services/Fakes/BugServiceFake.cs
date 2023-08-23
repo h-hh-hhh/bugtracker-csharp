@@ -32,6 +32,7 @@ namespace Tracker.BLL.Services.Fakes
             Name = "project 1",
             Description = "Description for project 1",
             Author = _user1,
+            Members = new List<UserDTO> { _user1, _user2 },
             Created = DateTime.Now,
             Updated = DateTime.Now
         };

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Tracker.BLL.Services;
 using Tracker.BLL.Services.Fakes;
 using Tracker.BLL.Services.Interfaces;
 using Tracker.DAL;
@@ -25,7 +26,7 @@ else
             options.UseSqlServer(builder.Configuration.GetConnectionString("ProductionConnection")));
 }
 
-builder.Services.AddSingleton<IBugService, BugServiceFake>();
+builder.Services.AddSingleton<IBugService, BugService>();
 
 var app = builder.Build();
 

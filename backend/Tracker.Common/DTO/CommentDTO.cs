@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Tracker.Common.DTO
 {
-    public class UserDTO
+    public class CommentDTO
     {
         public Guid Id { get; set; }
-        public string Username { get; set; }
+        public string Text { get; set; }
+        public UserDTO Author { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
-        public ICollection<ProjectDTO>? Projects { get; set; }
     }
 }

@@ -18,6 +18,6 @@ namespace Tracker.DAL.Entities
         public string Name { get; set; }
         public uint Color { get; set; }
 
-        public ICollection<Bug> TaggedBugs { get; set; }
+        public ICollection<Bug> TaggedBugs { get; private set; }
     }
 }
