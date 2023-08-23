@@ -24,7 +24,7 @@ namespace Tracker.DAL.Entities
 
         [Required]
         public string Name { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public DateTime Created
         {
             get => _created;
@@ -32,7 +32,7 @@ namespace Tracker.DAL.Entities
         }
         public DateTime Updated { get; set; }
 
-        public User Owner { get; set; }
+        public User? Owner { get; set; }
         public ICollection<User> Members { get; set; }
     }
 }

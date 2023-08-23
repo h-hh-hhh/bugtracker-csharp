@@ -30,6 +30,6 @@ namespace Tracker.DAL.Entities
         }
         public DateTime Updated { get; set; }
 
-        public User Author { get; set; }
+        public User? Author { get; set; }
     }
 }

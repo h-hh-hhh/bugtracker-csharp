@@ -105,7 +105,8 @@ namespace Tracker.DAL
             modelBuilder.Entity<Comment>()
                 .HasOne(e => e.Author)
                 .WithMany()
-                .HasForeignKey("AuthorId");
+                .HasForeignKey("AuthorId")
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Project>()
                 .HasOne(e => e.Owner)

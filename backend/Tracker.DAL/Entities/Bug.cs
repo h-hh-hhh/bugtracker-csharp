@@ -34,7 +34,7 @@ namespace Tracker.DAL.Entities
 
         [Required]
         public string Title { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public StatusType Status { get; set; }
         public DateTime Created 
         {
@@ -43,7 +43,7 @@ namespace Tracker.DAL.Entities
         }
         public DateTime Updated { get; set; }
 
-        public User Author { get; set; }
+        public User? Author { get; set; }
         public Project Project { get; set; }
         public ICollection<Comment> Comments { get; private set; }
         public ICollection<User> Assignees { get; private set; }
